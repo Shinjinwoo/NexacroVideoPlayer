@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sample_videoplayer_02" width="480" height="720" titletext="New Form" onload="VedioSampleTest_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="480">
+        <VideoPlayer id="VideoPlayer00" taborder="0" left="32" top="40" width="378" height="320" oncurrenttimechanged="VideoPlayer00_oncurrenttimechanged" onplaystatuschanged="VideoPlayer00_onplaystatuschanged"/>
+        <Button id="btn_play" taborder="1" text="Play" left="32" top="374" width="120" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btn_play_onclick"/>
+        <Button id="btn_pause" taborder="2" text="Pause" left="162" top="374" width="120" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btn_pause_onclick"/>
+        <Button id="btn_stop" taborder="3" text="Stop" left="290" top="374" width="120" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btn_stop_onclick"/>
+        <Static id="stt_playtime" taborder="4" left="430" top="374" width="120" height="32" enable="false" textAlign="right"/>
+        <Button id="btn_forward" taborder="5" text="Forward" left="32" top="416" width="120" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btn_forward_onclick"/>
+        <Button id="btn_rewind" taborder="6" text="Rewind" left="162" top="416" width="120" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btn_rewind_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.VedioSampleTest_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.VideoPlayer00.set_url("http://211.119.101.210:35001/livesupp/upload/file/20210504/2025035_20210504164015842.mp4");
+	// 웹용 URL 상대경로는 Android App에서 인식불가, HTTP 부터 명시
+}
+
+this.btn_play_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.VideoPlayer00.play();
+};
+
+this.btn_pause_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.VideoPlayer00.pause();
+};
+
+this.btn_stop_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.VideoPlayer00.stop();
+};
+
+this.btn_forward_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.VideoPlayer00.set_currenttime(this.VideoPlayer00.currenttime + 2000);
+};
+
+this.btn_rewind_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.VideoPlayer00.set_currenttime(this.VideoPlayer00.currenttime - 2000);
+};
+
+
+this.VideoPlayer00_onplaystatuschanged = function(obj:nexacro.VideoPlayer,e:nexacro.VideoPlayStateChangedEventInfo)
+{
+	switch(e.newstate)
+	{	
+		case "stop":
+				this.stt_playtime.set_text(" ");
+		case "pause":
+		case "play":
+		case "buffer":
+		case "ended":
+		default:
+			trace("state: "+ e.newstate);
+	}
+};]]></Script>
+  </Form>
+</FDL>

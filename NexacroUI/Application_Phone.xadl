@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application_Phone" screenid="Phone_screen" licenseurl="http://smart.tobesoft.co.kr/17.1/nexacro17_client_license.xml">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="false" showstatusbar="false" left="0" top="0" width="480" height="768">
+        <ChildFrame id="ChildFrame00" showtitlebar="false" showstatusbar="false" formurl="Base::VideoPlayerSample.xfdl"/>
+      </MainFrame>
+    </Layout>
+  </Application>
+</ADL>
